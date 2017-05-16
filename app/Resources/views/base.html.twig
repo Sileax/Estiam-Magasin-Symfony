@@ -53,6 +53,12 @@
 </head>
 <body class="skin-blue">
 {% block body %}
+    {% include 'default/header.html.twig' %}
+
+    {% include 'default/sidebar.html.twig' %}
+    <div class="content-wrapper">
+        {% block content %}{% endblock %}
+    </div>
 {% endblock %}
 </body>
 </html>

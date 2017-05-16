@@ -66,4 +66,15 @@ class SecurityController extends Controller
             'username' => $username
         ]);
     }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction(Request $request)
+    {
+        $session = $request->getSession();
+        $session->invalidate();
+
+        return $this->redirectToRoute('login');
+    }
 }
