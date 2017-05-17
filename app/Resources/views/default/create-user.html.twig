@@ -7,51 +7,46 @@
                 <div class="pad-top">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        {% for product in products %}
-                        <form action="/product/{{ product.id }}" method="post">
+                        <form action="/create-product" method="post">
                             <div class="form-group has-feedback">
                                 <label for="name" class="col-sm-3 control-label">Nom</label>
                                 <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nom du produit" value="{{ product.slug }}">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nom du produit">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                    <label for="buying-price" class="col-sm-3 control-label">Prix d'achat</label>
+                                <label for="buying-price" class="col-sm-3 control-label">Prix d'achat</label>
                                 <div class="col-sm-9 mg-bot">
                                     <input type="text" class="form-control" name="buying-price" id="buying-price"
-                                           placeholder="Prix d'achat du produit" value="{{ product.buyingPrice }}">
+                                           placeholder="Prix d'achat du produit">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                    <label for="selling-price" class="col-sm-3 control-label">Prix de vente</label>
+                                <label for="selling-price" class="col-sm-3 control-label">Prix de vente</label>
                                 <div class="col-sm-9 mg-bot">
                                     <input type="text" class="form-control" name="selling-price" id="selling-price"
-                                           placeholder="Prix de vente du produit" value="{{ product.sellingPrice }}">
+                                           placeholder="Prix de vente du produit">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                    <label for="reference" class="col-sm-3 control-label">Reference</label>
+                                <label for="reference" class="col-sm-3 control-label">Reference</label>
                                 <div class="col-sm-9 mg-bot">
                                     <input type="text" class="form-control" name="reference" id="reference"
-                                           placeholder="Reference du produit" value="{{ product.reference }}">
+                                           placeholder="Reference du produit">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                    <label for="vat" class="col-sm-3 control-label">Taux TVA</label>
+                                <label for="vat" class="col-sm-3 control-label">Taux TVA</label>
                                 <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="vat" placeholder="TVA du produit" id="vat" value="{{ product.vat }}">
+                                    <input type="text" class="form-control" name="vat" placeholder="TVA du produit" id="vat">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                    <label for="category" class="col-sm-3 control-label">Categorie</label>
+                                <label for="category" class="col-sm-3 control-label">Categorie</label>
                                 <div class="col-sm-9 mg-bot">
                                     <select class="form-control select2" style="width: 100%;" name="category" id="category">
                                         {% for category in categories %}
-                                            {% if product.idCategory == category.id %}
-                                                <option selected="selected" value="{{ category.id }}">{{ category.name }}</option>
-                                            {% else %}
-                                                <option value="{{ category.id }}">{{ category.name }}</option>
-                                            {% endif %}
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -70,7 +65,6 @@
 
                             </div>
                         </form>
-                            {% endfor %}
                     </div>
                 </div>
             </div>

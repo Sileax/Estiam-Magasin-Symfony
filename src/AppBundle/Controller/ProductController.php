@@ -104,7 +104,7 @@ class ProductController extends Controller
         }
             $db = $this->getDoctrine()->getManager()->getConnection();
 
-            $query = $db->prepare('SELECT * FROM category');
+            $query = $db->prepare('SELECT * FROM category ORDER BY id ASC');
             $query->execute();
             $result = $query->fetchAll();
 
@@ -132,7 +132,7 @@ class ProductController extends Controller
 
             $db = $this->getDoctrine()->getManager()->getConnection();
 
-            $query = $db->prepare('SELECT * FROM products INNER JOIN category WHERE products.idCategory = category.id');
+            $query = $db->prepare('SELECT p.id, p.slug, p.reference, p.buyingPrice, p.sellingPrice, p.vat, c.name FROM products p LEFT JOIN category c ON p.idCategory = c.id');
             $query->execute();
             $result = $query->fetchAll();
 
@@ -162,7 +162,7 @@ class ProductController extends Controller
                 $productBuyingPrice = $request->request->get('buying-price');
                 $productSellingPrice = $request->request->get('selling-price');
                 $productVAT = $request->request->get('vat');
-                $productReference = $request->request->get('category');
+                $productReference = $request->request->get('reference');
                 $productCategory = $request->request->get('category');
 
                 if (empty($productName))
@@ -198,18 +198,9 @@ class ProductController extends Controller
 
                 if(empty($errors)){
 
-                    $query = $db->prepare('SELECT COUNT(*) AS nproduct FROM products WHERE slug = :slug OR reference = :reference');
-                    $query->bindValue('slug', $productName);
-                    $query->bindValue('reference', $productReference);
-                    $query->execute();
-                    $result = $query->fetch();
-
-                    if ($result['nproduct'] > 0) {
-                        $errors[] = 'Un produit avec ce nom ou cette réference existe déjà';
-                    } else{
-                        $query = $db->prepare(
-                            'UPDATE products (slug,reference,buyingPrice, sellingPrice, vat, idCategory) SET slug = :slug AND reference = :reference AND buyingPrice = :buyingPrice AND sellingPrice = :sellingPrice AND vat = :vat AND idCategory = :idCat WHERE products.id = :id)'
-                        );
+                    $query = $db->prepare(
+                        'UPDATE products SET slug = :slug, reference = :reference, buyingPrice = :buyingPrice, sellingPrice = :sellingPrice, vat = :vat, idCategory = :idCat WHERE products.id = :id'
+                    );
                         $query->bindValue('slug', $productName);
                         $query->bindValue('reference', $productReference);
                         $query->bindValue('buyingPrice', $productBuyingPrice);
@@ -219,17 +210,18 @@ class ProductController extends Controller
                         $query->bindValue('id', $id);
                         $query->execute();
                     }
+
                     return $this->redirectToRoute('list-products');
                 }
-            }
 
 
-            $query = $db->prepare('SELECT * FROM products INNER JOIN category WHERE products.idCategory = category.id AND products.id = :id');
+            $query = $db->prepare('SELECT p.id, p.slug, p.reference, p.buyingPrice, p.sellingPrice, p.vat, p.idCategory, c.name FROM products p LEFT JOIN category c ON p.idCategory = c.id WHERE p.id = :id');
             $query->bindValue('id', $id);
             $query->execute();
             $products = $query->fetchAll();
 
-            $query = $db->prepare('SELECT * FROM category');
+
+            $query = $db->prepare('SELECT * FROM category ORDER BY id ASC');
             $query->execute();
             $categories = $query->fetchAll();
 

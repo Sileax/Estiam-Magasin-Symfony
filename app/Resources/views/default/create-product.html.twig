@@ -7,47 +7,64 @@
                 <div class="pad-top">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <form action="/create-product" method="post">
-                            <div class="form-group has-feedback">
-                                <input type="text" class="form-control" name="name" placeholder="Nom du produit">
-                            </div>
-                            <div class="form-group has-feedback">
-                                <input type="text" class="form-control" name="buying-price"
-                                       placeholder="Prix d'achat du produit">
-                            </div>
-                            <div class="form-group has-feedback">
-                                <input type="text" class="form-control" name="selling-price"
-                                       placeholder="Prix de vente du produit">
-                            </div>
-                            <div class="form-group has-feedback">
-                                <input type="text" class="form-control" name="reference"
-                                       placeholder="Reference du produit">
-                            </div>
-                            <div class="form-group has-feedback">
-                                <input type="text" class="form-control" name="vat" placeholder="TVA du produit">
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label>Categorie du produit</label>
-                                <select class="form-control select2" style="width: 100%;" name="category">
-                                    {% for product in products %}
-                                        <option value="{{ category.id }}">{{ category.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-8">
-                                    {% for error in errors %}
-                                        {% if error|length > 0 %}
-                                            <p class="text-danger">{{ error }}</p>
-                                        {% endif %}
-                                    {% endfor %}
+                            <form action="/create-product" method="post">
+                                <div class="form-group has-feedback">
+                                    <label for="name" class="col-sm-3 control-label">Nom</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nom du produit">
+                                    </div>
                                 </div>
-                                <div class="col-xs-4">
-                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                                <div class="form-group has-feedback">
+                                    <label for="buying-price" class="col-sm-3 control-label">Prix d'achat</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="buying-price" id="buying-price"
+                                               placeholder="Prix d'achat du produit">
+                                    </div>
                                 </div>
+                                <div class="form-group has-feedback">
+                                    <label for="selling-price" class="col-sm-3 control-label">Prix de vente</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="selling-price" id="selling-price"
+                                               placeholder="Prix de vente du produit">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="reference" class="col-sm-3 control-label">Reference</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="reference" id="reference"
+                                               placeholder="Reference du produit">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="vat" class="col-sm-3 control-label">Taux TVA</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="vat" placeholder="TVA du produit" id="vat">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="category" class="col-sm-3 control-label">Categorie</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <select class="form-control select2" style="width: 100%;" name="category" id="category">
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <div class="col-xs-8">
+                                        {% for error in errors %}
+                                            {% if error|length > 0 %}
+                                                <p class="text-danger">{{ error }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                                    </div>
 
-                            </div>
-                        </form>
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>
