@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row"></div>
+        <div class="text-center">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Liste de toutes les commandes
+                    </h3>
+
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Reference</th>
+                            <th class="text-center">Categorie</th>
+                            <th class="text-center">Prix d'achat</th>
+                            <th class="text-center">Prix de vente</th>
+                            <th class="text-center">TVA</th>
+                        </tr>
+                        {% for product in products %}
+                            {% if product|length > 0 %}
+                                <tr class="clickable">
+                                    <td>{{ product.slug }}</td>
+                                    <td>{{ product.reference }}</td>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.buyingPrice }}</td>
+                                    <td>{{ product.sellingPrice }}</td>
+                                    <td>{{ product.vat }}</td>
+                                    <input type="hidden" class="idElement" value="{{ product.id }}"/>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <script src="{{ asset('js/redirect.js') }}"></script>
+{% endblock %}

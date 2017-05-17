@@ -27,7 +27,6 @@ class SecurityController extends Controller
         }
 
         $errors = [];
-        $username = "";
 
         if ($request->getMethod() == 'POST') {
             $username = $request->request->get('username');
@@ -56,6 +55,7 @@ class SecurityController extends Controller
                 } else {
                     $session->set('id', $user['id']);
                     $session->set('name', $user['username']);
+                    $session->set('role', $user['roleId']);
                     return $this->redirectToRoute('homepage');
                 }
             }
@@ -77,4 +77,5 @@ class SecurityController extends Controller
 
         return $this->redirectToRoute('login');
     }
+
 }

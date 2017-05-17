@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <div class="pad-top">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form action="/create-product" method="post">
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" name="name" placeholder="Nom du produit">
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" name="buying-price"
+                                       placeholder="Prix d'achat du produit">
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" name="selling-price"
+                                       placeholder="Prix de vente du produit">
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" name="reference"
+                                       placeholder="Reference du produit">
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" name="vat" placeholder="TVA du produit">
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label>Categorie du produit</label>
+                                <select class="form-control select2" style="width: 100%;" name="category">
+                                    {% for product in products %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    {% for error in errors %}
+                                        {% if error|length > 0 %}
+                                            <p class="text-danger">{{ error }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="col-xs-4">
+                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
