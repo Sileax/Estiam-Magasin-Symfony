@@ -7,46 +7,33 @@
                 <div class="pad-top">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <form action="/create-product" method="post">
+                        <form action="/create-user" method="post">
                             <div class="form-group has-feedback">
-                                <label for="name" class="col-sm-3 control-label">Nom</label>
+                                <label for="username" class="col-sm-3 control-label">Pseudo</label>
                                 <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nom du produit">
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Pseudo utilisateur">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for="buying-price" class="col-sm-3 control-label">Prix d'achat</label>
+                                <label for="password" class="col-sm-3 control-label">Mot de passe</label>
                                 <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="buying-price" id="buying-price"
-                                           placeholder="Prix d'achat du produit">
+                                    <input type="password" class="form-control" name="password" id="password"
+                                           placeholder="Mot de passe">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for="selling-price" class="col-sm-3 control-label">Prix de vente</label>
+                                <label for="password-confirm" class="col-sm-3 control-label">Confirmation mot de passe</label>
                                 <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="selling-price" id="selling-price"
-                                           placeholder="Prix de vente du produit">
+                                    <input type="password" class="form-control" name="password-confirm" id="password-confirm"
+                                           placeholder="Confirmation du mot de passe">
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                <label for="reference" class="col-sm-3 control-label">Reference</label>
+                                <label for="role" class="col-sm-3 control-label">Roles</label>
                                 <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="reference" id="reference"
-                                           placeholder="Reference du produit">
-                                </div>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="vat" class="col-sm-3 control-label">Taux TVA</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="vat" placeholder="TVA du produit" id="vat">
-                                </div>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="category" class="col-sm-3 control-label">Categorie</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <select class="form-control select2" style="width: 100%;" name="category" id="category">
-                                        {% for category in categories %}
-                                            <option value="{{ category.id }}">{{ category.name }}</option>
+                                    <select class="form-control select2" style="width: 100%;" name="role" id="role">
+                                        {% for role in roles %}
+                                            <option value="{{ role.id }}">{{ role.roleType }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -60,7 +47,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-xs-4">
-                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Créer utilisateur</button>
                                 </div>
 
                             </div>

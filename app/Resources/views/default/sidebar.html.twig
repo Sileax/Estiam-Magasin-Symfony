@@ -9,14 +9,14 @@
                 </li>
             {% endif %}
             {% if app.session.get('role') == '2' %}
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-archive"></i>
-                        <span>Produits</span>
-                        <span class="pull-right-container">
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-archive"></i>
+                    <span>Produits</span>
+                    <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
-                    </a>
+                </a>
                 <ul class="treeview-menu">
                     <li class="active">
                         <a href="/list-products">
@@ -28,14 +28,31 @@
                             <i class="fa fa-circle-o"></i>
                             Creer un produit</a>
                     </li>
+                </ul>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>Categories</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active">
+                        <a href="/list-categories">
+                            <i class="fa fa-circle-o"></i>
+                            Liste des categorie</a>
+                    </li>
                     <li class="active">
                         <a href="/create-category">
-                            <i class="fa fa-th"></i>
+                            <i class="fa fa-circle-o"></i>
                             Creer une categorie</a>
                     </li>
                 </ul>
-            {% endif %}
-            {% if app.session.get('role') == '3' %}
+            </li>
+        </ul>
+        {% endif %}
+        {% if app.session.get('role') == '3' %}
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-archive"></i>
@@ -57,17 +74,49 @@
                     </li>
                 </ul>
             </li>
-            <li class="active">
-                <a href="/create-users">
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-user"></i>
-                    Créer utilisateur</a>
+                    <span>Utilisateurs</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active">
+                        <a href="/list-users">
+                            <i class="fa fa-user"></i>
+                            Liste des utilisateurs</a>
+                    </li>
+                    <li class="active">
+                        <a href="/create-user">
+                            <i class="fa fa-user"></i>
+                            Créer utilisateur</a>
+                    </li>
+                </ul>
             </li>
-            <li class="active">
-                <a href="/create-category">
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-th"></i>
-                    Creer une categorie</a>
+                    <span>Categories</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active">
+                        <a href="/list-categories">
+                            <i class="fa fa-circle-o"></i>
+                            Liste des categorie</a>
+                    </li>
+                    <li class="active">
+                        <a href="/create-category">
+                            <i class="fa fa-circle-o"></i>
+                            Creer une categorie</a>
+                    </li>
+                </ul>
             </li>
-            {% endif %}
+        {% endif %}
         </ul>
     </section>
 </aside>

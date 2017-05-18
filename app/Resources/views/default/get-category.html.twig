@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <div class="pad-top">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        {% for category in categories %}
+                            <form action="/category/{{ category.id }}" method="post">
+                                <div class="form-group has-feedback">
+                                    <label for="name" class="col-sm-3 control-label">Nom de la catégorie</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="name" id="name"
+                                               placeholder="Pseudo utilisateur" value="{{ category.name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <div class="col-xs-8">
+                                        {% for error in errors %}
+                                            {% if error|length > 0 %}
+                                                <p class="text-danger">{{ error }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Modifier
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+    <div class="row"></div>
+    <div class="text-center">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Liste de tous les utilisateurs
+                </h3>
+
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center pull-right" style="width:200px">Supprimer</th>
+                    </tr>
+                    {% for user in users %}
+                        {% if user|length > 0 %}
+                            <tr class="clickable">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.roleType }}</td>
+                                <td class="pull-right" style="width:200px"><a href="/delete-user/{{ user.id }}"><button class="btn btn-danger">Supprimer</button></a></td>
+                                <input type="hidden" class="idElement" value="{{ user.id }}"/>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/redirect-users.js') }}"></script>
+{% endblock %}

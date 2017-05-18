@@ -62,8 +62,7 @@ class SecurityController extends Controller
         }
 
         return $this->render('default/login.html.twig', [
-            'errors' => $errors,
-            'username' => $username
+            'errors' => $errors
         ]);
     }
 

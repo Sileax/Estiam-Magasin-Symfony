@@ -8,69 +8,85 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         {% for product in products %}
-                        <form action="/product/{{ product.id }}" method="post">
-                            <div class="form-group has-feedback">
-                                <label for="name" class="col-sm-3 control-label">Nom</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nom du produit" value="{{ product.slug }}">
+                            <form action="/product/{{ product.id }}" method="post">
+                                {% if app.session.get('role') == '1' %}
+
+                                {% endif %}
+                                <div class="form-group has-feedback">
+                                    <label for="name" class="col-sm-3 control-label">Nom</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="name" id="name"
+                                               placeholder="Nom du produit" value="{{ product.slug }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group has-feedback">
+                                <div class="form-group has-feedback">
                                     <label for="buying-price" class="col-sm-3 control-label">Prix d'achat</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="buying-price" id="buying-price"
-                                           placeholder="Prix d'achat du produit" value="{{ product.buyingPrice }}">
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="buying-price" id="buying-price"
+                                               placeholder="Prix d'achat du produit" value="{{ product.buyingPrice }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group has-feedback">
+                                <div class="form-group has-feedback">
                                     <label for="selling-price" class="col-sm-3 control-label">Prix de vente</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="selling-price" id="selling-price"
-                                           placeholder="Prix de vente du produit" value="{{ product.sellingPrice }}">
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="selling-price" id="selling-price"
+                                               placeholder="Prix de vente du produit"
+                                               value="{{ product.sellingPrice }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group has-feedback">
+                                <div class="form-group has-feedback">
                                     <label for="reference" class="col-sm-3 control-label">Reference</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="reference" id="reference"
-                                           placeholder="Reference du produit" value="{{ product.reference }}">
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="reference" id="reference"
+                                               placeholder="Reference du produit" value="{{ product.reference }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group has-feedback">
+                                <div class="form-group has-feedback">
                                     <label for="vat" class="col-sm-3 control-label">Taux TVA</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <input type="text" class="form-control" name="vat" placeholder="TVA du produit" id="vat" value="{{ product.vat }}">
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="text" class="form-control" name="vat" placeholder="TVA du produit"
+                                               id="vat" value="{{ product.vat }}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group has-feedback">
+                                <div class="form-group has-feedback">
+                                    <label for="vat" class="col-sm-3 control-label">Stock</label>
+                                    <div class="col-sm-9 mg-bot">
+                                        <input type="number" class="form-control" name="stock" placeholder="Nombre de produit en stock"
+                                               id="vat" value="{{ product.availableProducts }}">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
                                     <label for="category" class="col-sm-3 control-label">Categorie</label>
-                                <div class="col-sm-9 mg-bot">
-                                    <select class="form-control select2" style="width: 100%;" name="category" id="category">
-                                        {% for category in categories %}
-                                            {% if product.idCategory == category.id %}
-                                                <option selected="selected" value="{{ category.id }}">{{ category.name }}</option>
-                                            {% else %}
-                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                    <div class="col-sm-9 mg-bot">
+                                        <select class="form-control select2" style="width: 100%;" name="category"
+                                                id="category">
+                                            {% for category in categories %}
+                                                {% if product.idCategory == category.id %}
+                                                    <option selected="selected"
+                                                            value="{{ category.id }}">{{ category.name }}</option>
+                                                {% else %}
+                                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <div class="col-xs-8">
+                                        {% for error in errors %}
+                                            {% if error|length > 0 %}
+                                                <p class="text-danger">{{ error }}</p>
                                             {% endif %}
                                         {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <div class="col-xs-8">
-                                    {% for error in errors %}
-                                        {% if error|length > 0 %}
-                                            <p class="text-danger">{{ error }}</p>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                                <div class="col-xs-4">
-                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-                                </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Modifier
+                                        </button>
+                                    </div>
 
-                            </div>
-                        </form>
-                            {% endfor %}
+                                </div>
+                            </form>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
