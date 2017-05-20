@@ -1,3 +1,8 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+stock:
+    type:     rest
+    host:     estiam.magasin
+    resource: ApiBundle\Controller\StockRestController

@@ -76,5 +76,4 @@ class SecurityController extends Controller
 
         return $this->redirectToRoute('login');
     }
-
 }
